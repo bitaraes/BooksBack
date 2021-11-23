@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 
 namespace BooksApi.Controllers
-{
+{   
+    
     [Route("api/[controller]")]
     [ApiController]
     public class BooksController : ControllerBase
@@ -40,7 +41,7 @@ namespace BooksApi.Controllers
             return book;
             //return View("index", book);
         }
-
+        [Authorize]
         [HttpPost]
         public ActionResult<Book> Create(Book book)
         {
@@ -48,7 +49,7 @@ namespace BooksApi.Controllers
 
             return CreatedAtRoute("GetBook", new { id = book.Id.ToString() }, book);
         }
-
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Update(string id, Book bookIn)
         {
@@ -63,7 +64,7 @@ namespace BooksApi.Controllers
 
             return NoContent();
         }
-
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
