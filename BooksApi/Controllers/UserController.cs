@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace BooksApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[action]")]
     public class UserController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -36,11 +36,9 @@ namespace BooksApi.Controllers
                 IdentityResult result = await _userManager.CreateAsync(appUser, user.Password);
                 if (result.Succeeded)
                 {
-                    return Ok("Usuário Criado");
-                } else
-                {
+                    return Ok();
+                } 
                     return BadRequest(result.Errors);
-                }
             }
             return BadRequest("Faltam parâmetros");
         }
@@ -65,23 +63,16 @@ namespace BooksApi.Controllers
                         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
                         var token = new JwtSecurityToken(
-                            issuer: "Alura.WebApp",
-                            audience: "Postman",
                             claims: claims,
                             signingCredentials: credentials,
                             expires: DateTime.Now.AddDays(7)
                             );
                         var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-                        return Ok(tokenString);
-                    } else
-                    {
-                        return Unauthorized("Desautorizado");
+                        return Ok(new {token = tokenString});
                     }
+                     return Unauthorized("Desautorizado");
                 }
-                else
-                {
                     return BadRequest("Falta usuário");
-                }
             }
             return BadRequest("Faltam parâmetros");
         }

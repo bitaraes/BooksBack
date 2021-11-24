@@ -43,12 +43,11 @@ namespace BooksApi
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = false,
-                        ValidateAudience = true,
+                        ValidateAudience = false,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("valid-authentication")),
                         ClockSkew = TimeSpan.FromMinutes(5),
-                        ValidAudience = "Postman",
                     };
                 });
             services.Configure<BookstoreDatabaseSettings>(
