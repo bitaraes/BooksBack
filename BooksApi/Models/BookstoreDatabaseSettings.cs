@@ -1,4 +1,4 @@
-﻿namespace BooksApi
+﻿namespace BooksApi.Infraestructure.Data.Settings
 {
     public class sBookstoreDatabaseSettings : IsBookstoreDatabaseSettings
     {

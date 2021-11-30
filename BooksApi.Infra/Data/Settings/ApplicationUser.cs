@@ -2,7 +2,7 @@
 using MongoDbGenericRepository.Attributes;
 using System;
 
-namespace BooksApi.Models
+namespace BooksApi.Infraestructure.Data.Settings
 {
     [CollectionName("Users")]
     public class ApplicationUser : MongoIdentityUser<Guid>

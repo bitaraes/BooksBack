@@ -1,5 +1,5 @@
 ﻿using BooksApi.Domain.Entities;
-using BooksApi.Models;
+using BooksApi.Infraestructure.Data.Settings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;

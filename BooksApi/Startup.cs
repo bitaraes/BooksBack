@@ -1,4 +1,3 @@
-using BooksApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using System;
-using BooksApi.Services;
 using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -29,7 +27,7 @@ namespace BooksApi
         public void ConfigureServices(IServiceCollection services)
         {
             var mongoDbSettings = Configuration.GetSection(nameof(BookstoreDatabaseSettings)).Get<BookstoreDatabaseSettings>();
-            services.AddIdentity<ApplicationUser, ApplicationRole>().AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>(
+            services.AddIdentity<ApplicationUser,ApplicationRole >().AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>(
                     mongoDbSettings.ConnectionString, mongoDbSettings.DatabaseName
                 );
             services.AddAuthentication(options =>
@@ -53,8 +51,6 @@ namespace BooksApi
 
             services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
-
-            services.AddTransient<BookService>();
 
             services.AddControllers();
 

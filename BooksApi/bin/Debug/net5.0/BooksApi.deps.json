@@ -1967,6 +1967,7 @@
       },
       "BooksApi.Infraestructure/1.0.0": {
         "dependencies": {
+          "AspNetCore.Identity.MongoDbCore": "3.1.2",
           "BooksApi.Domain": "1.0.0",
           "EntityFramework": "6.4.4",
           "Microsoft.EntityFrameworkCore": "5.0.12",

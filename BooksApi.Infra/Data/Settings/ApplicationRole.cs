@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MongoDbGenericRepository.Attributes;
 using System;
 
-namespace BooksApi.Models
+namespace BooksApi.Infraestructure.Data.Settings
 {
     [CollectionName("Roles")]
-    class ApplicationRole : MongoIdentityRole<Guid>
+    public class ApplicationRole : MongoIdentityRole<Guid>
     {
     }
 }
