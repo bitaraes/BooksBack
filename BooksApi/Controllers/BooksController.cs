@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BooksApi.Models;
-using BooksApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
+using BooksApi.Domain.Entities;
+using BooksApi.Infraestructure.Data.Context;
+using BooksApi.Infraestructure.Data.Repostory;
+using BooksApi.Domain.Repository;
+using BooksApi.Domain.Interfaces.Services;
+using BooksApi.Domain.Dtos;
 
 namespace BooksApi.Controllers
 {   
@@ -15,21 +19,21 @@ namespace BooksApi.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly BookService _bookService;
+        private readonly BaseRepository<BookEntity> _bookService;
 
-        public BooksController(BookService bookService)
+        public BooksController(BaseRepository<BookEntity> bookService)
         {
             _bookService = bookService;
         }
 
         [HttpGet]
-        public ActionResult<List<Book>> Get() { 
+        public ActionResult<List<BookEntity>> Get() { 
            var book = _bookService.Get();
             return book == null ? NotFound(new { message = "Não encontrado" }) : book;
         }
 
         [HttpGet("{id}", Name = "GetBook")]
-        public ActionResult<Book> Get(string id)
+        public ActionResult<BookEntity> Get(string id)
         {
             var book = _bookService.Get(id);
 
@@ -39,11 +43,10 @@ namespace BooksApi.Controllers
             }
 
             return book;
-            //return View("index", book);
         }
         [Authorize]
         [HttpPost]
-        public ActionResult<Book> Create(Book book)
+        public ActionResult<BookEntity> Create(BookEntity book)
         {
             _bookService.Create(book);
 
@@ -51,7 +54,7 @@ namespace BooksApi.Controllers
         }
         [Authorize]
         [HttpPut("{id}")]
-        public IActionResult Update(string id, Book bookIn)
+        public IActionResult Update(string id, BookEntity bookIn)
         {
             var book = _bookService.Get(id);
 
@@ -75,7 +78,7 @@ namespace BooksApi.Controllers
                 return NotFound();
             }
 
-            _bookService.Remove(book.Id);
+            _bookService.Remove(book.Id.ToString());
 
             return NoContent();
         }

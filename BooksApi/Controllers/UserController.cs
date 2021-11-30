@@ -1,4 +1,5 @@
-﻿using BooksApi.Models;
+﻿using BooksApi.Domain.Entities;
+using BooksApi.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -24,13 +25,13 @@ namespace BooksApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(User user)
+        public async Task<IActionResult> Register(UserEntity user)
         {
             if (ModelState.IsValid)
             {
                 ApplicationUser appUser = new ApplicationUser
                 {
-                    UserName = user.Login,
+                    UserName = user.UserName,
                     PasswordHash = user.Password
                 };
                 IdentityResult result = await _userManager.CreateAsync(appUser, user.Password);
@@ -43,11 +44,11 @@ namespace BooksApi.Controllers
             return BadRequest("Faltam parâmetros");
         }
        [HttpPost]
-        public async Task<IActionResult> Login([Required] User user)
+        public async Task<IActionResult> Login([Required] UserEntity user)
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser appUser = await _userManager.FindByNameAsync(user.Login);
+                ApplicationUser appUser = await _userManager.FindByNameAsync(user.UserName);
                 
                 if (appUser != null)
                 {
@@ -56,7 +57,7 @@ namespace BooksApi.Controllers
                     {
                         var claims = new[]
                         {
-                            new Claim(JwtRegisteredClaimNames.Sub, user.Login),
+                            new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         };
                         var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("valid-authentication"));

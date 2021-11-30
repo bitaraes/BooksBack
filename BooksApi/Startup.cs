@@ -1,20 +1,18 @@
 using BooksApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BooksApi.Services;
 using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using BooksApi.Domain.Entities;
+using BooksApi.Infraestructure.Data.Repostory;
+using BooksApi.Infraestructure.Data.Settings;
 
 namespace BooksApi
 {
@@ -91,7 +89,7 @@ namespace BooksApi
                     { jwtSecurityScheme, Array.Empty<string>() }
                 });
             });
-            
+            services.AddTransient<BaseRepository<BookEntity>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

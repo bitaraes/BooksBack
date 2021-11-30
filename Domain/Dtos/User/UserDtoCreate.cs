@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BooksApi.Models
+namespace BooksApi.Domain.Dtos
 {
-    public class User
+    public class UserDtoCreate
     {
         [Required]
         [Display(Name = "Usuário")]

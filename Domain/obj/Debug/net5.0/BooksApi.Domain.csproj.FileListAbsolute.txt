@@ -1,0 +1,12 @@
+C:\Users\User\source\repos\BooksApi\Domain\bin\Debug\net5.0\BooksApi.Domain.deps.json
+C:\Users\User\source\repos\BooksApi\Domain\bin\Debug\net5.0\BooksApi.Domain.dll
+C:\Users\User\source\repos\BooksApi\Domain\bin\Debug\net5.0\ref\BooksApi.Domain.dll
+C:\Users\User\source\repos\BooksApi\Domain\bin\Debug\net5.0\BooksApi.Domain.pdb
+C:\Users\User\source\repos\BooksApi\Domain\obj\Debug\net5.0\BooksApi.Domain.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\BooksApi\Domain\obj\Debug\net5.0\BooksApi.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\BooksApi\Domain\obj\Debug\net5.0\BooksApi.Domain.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\BooksApi\Domain\obj\Debug\net5.0\BooksApi.Domain.AssemblyInfo.cs
+C:\Users\User\source\repos\BooksApi\Domain\obj\Debug\net5.0\BooksApi.Domain.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\BooksApi\Domain\obj\Debug\net5.0\BooksApi.Domain.dll
+C:\Users\User\source\repos\BooksApi\Domain\obj\Debug\net5.0\ref\BooksApi.Domain.dll
+C:\Users\User\source\repos\BooksApi\Domain\obj\Debug\net5.0\BooksApi.Domain.pdb
