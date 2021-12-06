@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using BooksApi.Domain.Entities;
 using BooksApi.Infraestructure.Data.Repostory;
 using BooksApi.Infraestructure.Data.Settings;
+using BooksApi.Domain.Security;
+using AutoMapper;
+using BooksApi.Infraestructure.Data.Mappings;
 
 namespace BooksApi
 {
@@ -85,7 +88,11 @@ namespace BooksApi
                     { jwtSecurityScheme, Array.Empty<string>() }
                 });
             });
+            var config = new AutoMapper.MapperConfiguration(cfg => cfg.AddProfile<AutoMapperProfile>() );
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
             services.AddTransient<BaseRepository<BookEntity>>();
+            services.AddTransient<TokenConfigurations>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

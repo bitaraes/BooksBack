@@ -1,8 +1,8 @@
 ﻿using BooksApi.Domain.Entities;
+using BooksApi.Domain.Security;
 using BooksApi.Infraestructure.Data.Settings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,15 +17,17 @@ namespace BooksApi.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly TokenConfigurations _token;
 
-        public UserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public UserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, TokenConfigurations token)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
+            this._token = token;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(UserEntity user)
+        public async Task<IActionResult> Create(UserEntity user)
         {
             if (ModelState.IsValid)
             {
@@ -55,20 +57,7 @@ namespace BooksApi.Controllers
                     Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(appUser, user.Password, false, false);
                     if (result.Succeeded)
                     {
-                        var claims = new[]
-                        {
-                            new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                        };
-                        var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("valid-authentication"));
-                        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                        var token = new JwtSecurityToken(
-                            claims: claims,
-                            signingCredentials: credentials,
-                            expires: DateTime.Now.AddDays(7)
-                            );
-                        var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+                        var tokenString = _token.TokenGenerate(user);
                         return Ok(new {token = tokenString});
                     }
                      return Unauthorized("Desautorizado");

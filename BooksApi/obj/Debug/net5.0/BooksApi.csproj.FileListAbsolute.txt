@@ -62,7 +62,6 @@ C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\Microsoft.Identity
 C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -96,3 +95,4 @@ C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\BooksApi.Domain.dl
 C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\BooksApi.Infraestructure.dll
 C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\BooksApi.Infraestructure.pdb
 C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\BooksApi.Domain.pdb
+C:\Users\User\source\repos\BooksApi\BooksApi\bin\Debug\net5.0\AutoMapper.dll

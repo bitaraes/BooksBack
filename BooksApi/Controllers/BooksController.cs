@@ -4,12 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using BooksApi.Domain.Entities;
-using BooksApi.Infraestructure.Data.Context;
 using BooksApi.Infraestructure.Data.Repostory;
-using BooksApi.Domain.Repository;
-using BooksApi.Domain.Interfaces.Services;
+using AutoMapper;
 using BooksApi.Domain.Dtos;
 
 namespace BooksApi.Controllers
@@ -20,20 +17,21 @@ namespace BooksApi.Controllers
     public class BooksController : ControllerBase
     {
         private readonly BaseRepository<BookEntity> _bookService;
-
-        public BooksController(BaseRepository<BookEntity> bookService)
+        private readonly IMapper _mapper;
+        public BooksController(BaseRepository<BookEntity> bookService, IMapper mapper)
         {
             _bookService = bookService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<List<BookEntity>> Get() { 
+        public ActionResult<List<BookDto>> Get() { 
            var book = _bookService.Get();
-            return book == null ? NotFound(new { message = "Não encontrado" }) : book;
+           return book == null ? NotFound(new { message = "Não encontrado" }) : _mapper.Map<List<BookDto>>(book);
         }
 
         [HttpGet("{id}", Name = "GetBook")]
-        public ActionResult<BookEntity> Get(string id)
+        public ActionResult<BookDto> Get(string id)
         {
             var book = _bookService.Get(id);
 
@@ -42,19 +40,18 @@ namespace BooksApi.Controllers
                 return NotFound(new { message = "Não encontrado" });
             }
 
-            return book;
+            return _mapper.Map<BookDto>(book);
         }
-        [Authorize]
+        //[Authorize]
         [HttpPost]
-        public ActionResult<BookEntity> Create(BookEntity book)
+        public ActionResult<BookDto> Create(BookDto book)
         {
-            _bookService.Create(book);
-
-            return CreatedAtRoute("GetBook", new { id = book.Id.ToString() }, book);
+            var createdBook =_bookService.Create(_mapper.Map<BookEntity>(book));
+            return CreatedAtRoute("GetBook", new { id = createdBook.Id.ToString() }, _mapper.Map<BookEntity>(createdBook));
         }
-        [Authorize]
+        //[Authorize]
         [HttpPut("{id}")]
-        public IActionResult Update(string id, BookEntity bookIn)
+        public IActionResult Update(string id, BookDto bookIn)
         {
             var book = _bookService.Get(id);
 
@@ -63,11 +60,11 @@ namespace BooksApi.Controllers
                 return NotFound();
             }
 
-            _bookService.Update(id, bookIn);
+            _bookService.Update(id, _mapper.Map<BookEntity>(bookIn));
 
             return NoContent();
         }
-        [Authorize]
+        //[Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
