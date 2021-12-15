@@ -28,6 +28,7 @@ namespace BooksApi.Test
 
             return book;
         }
+
         [Fact]
         public void Create_OneBook_ReturnNotNullBook()
         {

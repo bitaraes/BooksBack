@@ -18,6 +18,7 @@ namespace BooksApi.Domain.Security
                         {
                             new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                            new Claim(JwtRegisteredClaimNames.Sid, user.Id.ToString())
                         };
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("valid-authentication"));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

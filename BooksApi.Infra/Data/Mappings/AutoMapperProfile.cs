@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BooksApi.Domain.Dtos;
 using BooksApi.Domain.Entities;
+using BooksApi.Infraestructure.Data.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace BooksApi.Infraestructure.Data.Mappings
         {
             CreateMap<BookEntity, BookDto>().ReverseMap();
             CreateMap<UserEntity, UserDto>().ReverseMap();
+            CreateMap<ApplicationUser, UserDto>().ReverseMap();
         }
     }
 }

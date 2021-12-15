@@ -7231,9 +7231,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\BooksApi\\BooksApi.Test\\BooksApi.Test.csproj",
-      "projectName": "BooksApi.Test",
-      "projectPath": "C:\\Users\\User\\source\\repos\\BooksApi\\BooksApi.Test\\BooksApi.Test.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\BooksApi\\BooksApi.Test\\BooksApi.Infraestructure.Test.csproj",
+      "projectName": "BooksApi.Infraestructure.Test",
+      "projectPath": "C:\\Users\\User\\source\\repos\\BooksApi\\BooksApi.Test\\BooksApi.Infraestructure.Test.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\User\\source\\repos\\BooksApi\\BooksApi.Test\\obj\\",
       "projectStyle": "PackageReference",

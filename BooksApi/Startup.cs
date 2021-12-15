@@ -92,6 +92,7 @@ namespace BooksApi
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
             services.AddTransient<BaseRepository<BookEntity>>();
+            services.AddTransient<UserRepository<UserEntity>>();
             services.AddTransient<TokenConfigurations>();
         }
 

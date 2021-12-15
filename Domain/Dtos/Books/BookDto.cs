@@ -8,6 +8,7 @@ namespace BooksApi.Domain.Dtos
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+        [SwaggerSchema(ReadOnly = true)]
         public string Id { get; set; }
         public string BookName { get; set; }
         public decimal Price { get; set; }
